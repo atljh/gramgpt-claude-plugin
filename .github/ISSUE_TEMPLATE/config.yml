@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GramGPT account, billing or module questions
+    url: https://gramgpt.io
+    about: Ask GramGPT support in the panel — this repo is only about the Claude Code plugin.
+  - name: API and MCP docs
+    url: https://gramgpt.io/api/v1/docs/
+    about: All tools, inputs and configs for every MCP client.

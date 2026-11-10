@@ -90,10 +90,15 @@ def main() -> None:
     assert len(tools) > 20, f"suspiciously few tools in spec: {len(tools)}"
     OUT.mkdir(parents=True, exist_ok=True)
     for old in OUT.glob("*.md"):
-        if old.stem not in tools:
+        if old.stem not in tools and old.name != "README.md":
             old.unlink()
     for name, op in sorted(tools.items()):
         (OUT / f"{name}.md").write_text(render(name, op), encoding="utf-8")
+    index = ["# Tool reference", "",
+             f"{len(tools)} tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.", "",
+             "| tool | what it does |", "|---|---|"]
+    index += [f"| [`{n}`]({n}.md) | {one_line(op.get('summary'))} |" for n, op in sorted(tools.items())]
+    (OUT / "README.md").write_text("\n".join(index) + "\n", encoding="utf-8")
     print(f"{len(tools)} tools → {OUT}")
 
 

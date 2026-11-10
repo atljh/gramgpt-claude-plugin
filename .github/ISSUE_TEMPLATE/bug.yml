@@ -1,0 +1,18 @@
+name: Bug
+description: Something in the plugin doesn't work
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: What happened
+      description: What you asked Claude, what it did, what you expected. Never paste your API key.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Claude Code version
+      placeholder: claude --version
+  - type: input
+    attributes:
+      label: Plugin version
+      placeholder: /plugin → gramgpt

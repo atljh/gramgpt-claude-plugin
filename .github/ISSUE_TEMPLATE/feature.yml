@@ -1,0 +1,9 @@
+name: Idea
+description: A command, recipe or rule the plugin should have
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: What you want Claude to do
+    validations:
+      required: true
