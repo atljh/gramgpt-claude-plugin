@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 — 2026-11-10
+
+- Key field explains what to paste: the full 41-character key shown once at creation,
+  not the short prefix from the key list, without `Bearer`.
+
 ## 1.1.0 — 2026-11-10
 
 - Tool reference: one page per tool with every input and `config` key, generated from

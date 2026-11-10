@@ -1,6 +1,6 @@
 {
   "name": "gramgpt",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "GramGPT for Claude Code: MCP connection to your GramGPT account plus a skill with the tool map and working rules (dry-run first, confirm before anything irreversible).",
   "author": {
     "name": "GramGPT",
@@ -20,7 +20,7 @@
     "api_key": {
       "type": "string",
       "title": "GramGPT API key",
-      "description": "ggk_live_… key from gramgpt.io → Settings → API keys.",
+      "description": "The FULL key, 41 characters: ggk_live_ + 32 more. It is shown only once, when you create it (gramgpt.io → Settings → API keys). Not the short ggk_live_AbCd prefix from the key list, and without the word Bearer.",
       "sensitive": true,
       "required": true
     }
