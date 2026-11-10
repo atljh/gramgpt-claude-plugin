@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "gramgpt",
+  "description": "GramGPT plugin for Claude Code",
+  "owner": { "name": "GramGPT", "url": "https://gramgpt.io" },
+  "plugins": [
+    {
+      "name": "gramgpt",
+      "description": "Run your GramGPT Telegram accounts from Claude Code: MCP tools + skill.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

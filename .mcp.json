@@ -1,0 +1,9 @@
+{
+  "gramgpt": {
+    "type": "http",
+    "url": "https://gramgpt.io/mcp/",
+    "headers": {
+      "Authorization": "Bearer ${user_config.api_key}"
+    }
+  }
+}

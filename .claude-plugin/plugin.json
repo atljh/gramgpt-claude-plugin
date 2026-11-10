@@ -1,0 +1,28 @@
+{
+  "name": "gramgpt",
+  "version": "1.0.0",
+  "description": "GramGPT for Claude Code: MCP connection to your GramGPT account plus a skill with the tool map and working rules (dry-run first, confirm before anything irreversible).",
+  "author": {
+    "name": "GramGPT",
+    "url": "https://gramgpt.io"
+  },
+  "homepage": "https://gramgpt.io/api/v1/docs/",
+  "repository": "https://github.com/atljh/gramgpt-claude-plugin",
+  "license": "MIT",
+  "privacyPolicyUrl": "https://gramgpt.io/privacy",
+  "icon": "./.claude-plugin/icon.png",
+  "keywords": [
+    "telegram",
+    "gramgpt",
+    "mcp"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "GramGPT API key",
+      "description": "ggk_live_… key from gramgpt.io → Settings → API keys.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}
