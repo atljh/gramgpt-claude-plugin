@@ -53,6 +53,17 @@ Never echo the key back, and never write it anywhere except that command.
    accounts, run `check_account_ggr` before heavy tasks, keep module defaults unless
    the user changes them.
 
+## Reference files
+
+- `references/tools/<tool>.md` — every input and `config` key of each tool with
+  types, defaults and limits (generated from the live API schema). **Read the file
+  before the first call of a tool in a session** instead of guessing config keys.
+- `references/recipes.md` — tested chains: account health check, warming, find →
+  filter → comment, inbox triage, buying accounts, following a long task.
+
+Shortcuts the user can type: `/gramgpt:status`, `/gramgpt:launch <what>`,
+`/gramgpt:task <task_id>`.
+
 ## What to call
 
 | User wants | Tool |
