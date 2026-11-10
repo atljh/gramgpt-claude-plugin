@@ -63,7 +63,7 @@ Claude Code's secure storage, never in a file.
 <details>
 <summary>Update, change the key, remove</summary>
 
-| | |
+| to | run |
 |---|---|
 | update | `/plugin marketplace update gramgpt` |
 | new key | `/plugin configure gramgpt@gramgpt` |
@@ -86,7 +86,7 @@ Connected GramGPT before with `claude mcp add`? Remove that one
 
 ## Commands
 
-| | |
+| command | what it does |
 |---|---|
 | `/gramgpt:status` | balance, account health, running tasks — read-only |
 | `/gramgpt:launch <what>` | pick accounts → dry-run → plan → your yes → launch |
