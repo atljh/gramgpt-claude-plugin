@@ -3,7 +3,8 @@
     "type": "http",
     "url": "https://gramgpt.io/mcp/",
     "headers": {
-      "Authorization": "Bearer ${user_config.api_key}"
+      "Authorization": "Bearer ${user_config.api_key}",
+      "X-Client": "gramgpt-plugin/1.1.2"
     }
   }
 }

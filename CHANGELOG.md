@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 — 2026-11-11
+
+- MCP requests carry `X-Client: gramgpt-plugin/<version>`, so GramGPT can tell plugin
+  installs from hand-added MCP connections. No key, account or prompt data is in it.
+
 ## 1.1.1 — 2026-11-10
 
 - Key field explains what to paste: the full 41-character key shown once at creation,
