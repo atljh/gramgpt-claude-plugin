@@ -1,6 +1,6 @@
 # list_accounts
 
-List your Telegram accounts. Accounts with pm_aggregation_enabled=True are not returned. Optionally filter by status.
+List your Telegram accounts. Optionally filter by status.
 
 ## Input
 

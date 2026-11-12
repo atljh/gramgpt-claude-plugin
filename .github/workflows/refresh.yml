@@ -15,6 +15,21 @@ jobs:
         run: |
           git add skills/gramgpt/references/tools
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          # installed plugins update by version: bump patch, else nobody gets the new reference
+          python3 - <<'PY'
+          import datetime, json, pathlib, re
+          pj = pathlib.Path(".claude-plugin/plugin.json")
+          meta = json.loads(pj.read_text())
+          a, b, c = map(int, meta["version"].split("."))
+          old, new = meta["version"], f"{a}.{b}.{c + 1}"
+          pj.write_text(pj.read_text().replace(f'"version": "{old}"', f'"version": "{new}"'))
+          mcp = pathlib.Path(".mcp.json")
+          mcp.write_text(mcp.read_text().replace(f"gramgpt-plugin/{old}", f"gramgpt-plugin/{new}"))
+          ch = pathlib.Path("CHANGELOG.md")
+          entry = f"## {new} — {datetime.date.today()}\n\n- Tool reference refreshed from the live API schema.\n\n"
+          ch.write_text(re.sub(r"(# Changelog\n\n)", lambda m: m.group(1) + entry, ch.read_text(), count=1))
+          PY
+          git add .claude-plugin/plugin.json .mcp.json CHANGELOG.md
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "reference: refresh from live API schema"

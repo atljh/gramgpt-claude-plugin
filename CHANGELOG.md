@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.2.0 — 2026-11-12
+
+- New tool `get_account_activity` — what an account did: actions and errors per
+  module, PeerFlood days, spamblock / freeze events. In the tool map, the rules and
+  the health-check recipe.
+- REST section covers the whole API: login by phone, blocklists, avatar library,
+  prompts, projects and roles, webhook redelivery, the LZT exchange and selling on
+  the marketplace. Buying recipe falls back to the exchange.
+- Rules match the MCP server's: `no_subscription`, `read_only_key`, `quota_exceeded`
+  are not fixed by retrying.
+- Reference refreshed: MassReact never reacts to channel posts; broadcast `chain`
+  items take their own `pause_min` / `pause_max`; `list_accounts` and
+  `pick_healthy_accounts` no longer skip `pm_aggregation_enabled` accounts.
+- The weekly reference refresh bumps the patch version, so installed plugins
+  pick it up.
+
 ## 1.1.2 — 2026-11-11
 
 - MCP requests carry `X-Client: gramgpt-plugin/<version>`, so GramGPT can tell plugin

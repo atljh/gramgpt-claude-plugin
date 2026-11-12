@@ -47,11 +47,12 @@ Never echo the key back, and never write it anywhere except that command.
    `delete_dialog`, `delete_messages`, `reply_in_dm`, `send_media`, `edit_message`,
    `click_button`, `block_peer`, `import_accounts`, any purchase.
    Name the exact accounts / amount.
-6. **Errors.** On `ok: false` read `error_code` and `recovery_hint`. Don't repeat a
-   failing call more than once.
+6. **Errors.** On `ok: false` read `error_code` and `recovery_hint`. `no_subscription`,
+   `read_only_key` and `quota_exceeded` are not fixed by retrying — tell the user.
+   Don't repeat a failing call more than once.
 7. **Account safety.** Telegram freezes accounts pushed too hard: prefer warmed
-   accounts, run `check_account_ggr` before heavy tasks, keep module defaults unless
-   the user changes them.
+   accounts, run `check_account_ggr` and `get_account_activity` before heavy tasks,
+   keep module defaults unless the user changes them.
 
 ## Reference files
 
@@ -71,6 +72,7 @@ Shortcuts the user can type: `/gramgpt:status`, `/gramgpt:launch <what>`,
 | balance, subscription | `check_balance` |
 | accounts, their state | `list_accounts`, `get_account_detail`, `pick_healthy_accounts` |
 | account risk score | `check_account_ggr` |
+| what an account did, its errors, PeerFlood, spamblocks | `get_account_activity` |
 | re-check sessions, spamblock, reauth, new profiles | `launch_account_op` |
 | warm accounts up | `launch_warming` |
 | join channels / chats | `launch_bulk_join` |
@@ -101,18 +103,38 @@ Shortcuts the user can type: `/gramgpt:status`, `/gramgpt:launch <what>`,
 ## REST only (not MCP tools)
 
 Needs the key in a shell variable — ask the user to `export GRAMGPT_API_KEY=ggk_live_...`
-and call with `curl -H "Authorization: Bearer $GRAMGPT_API_KEY"`:
+and call with `curl -H "Authorization: Bearer $GRAMGPT_API_KEY"`. Exact fields:
+https://gramgpt.io/api/v1/docs/.
 
-- `GET /api/v1/tasks/` (filter `?tag=`, `?external_id=`), `GET /api/v1/tasks/{id}/logs/`
-- `GET /api/v1/stats/accounts/`, `GET /api/v1/stats/activity/`
-- `GET /api/v1/history/` and `/history/{module}/` — exports
-- `POST /api/v1/accounts/import-tdata/`, `POST /api/v1/accounts/sessions/export/`
-- `GET/POST /api/v1/proxies/…` — list, check, attach, detach
-- Marketplace: `GET /api/v1/marketplace/stock/`, `/catalog/`, `/pick/`,
-  `POST /api/v1/marketplace/buy/`, buy orders `POST /api/v1/marketplace/orders/`
-  (pass `external_id` so a retry doesn't buy twice) — **spends balance, confirm first**
-- `POST /api/v1/media/` — upload a file for `send_media`
-- webhooks: `/api/v1/webhooks/`
+- Tasks: `GET /api/v1/tasks/` (filter `?tag=`, `?external_id=`), `/tasks/{id}/logs/`
+- Stats: `GET /api/v1/stats/accounts/`, `/stats/activity/`; exports: `/history/`,
+  `/history/{module}/`
+- Accounts in: `POST /api/v1/accounts/import-tdata/`; login by phone —
+  `POST /accounts/auth/start/` (sends the code) → `/auth/verify/` (code, 2FA) or
+  `/auth/cancel/`. Accounts out: `POST /accounts/sessions/export/` → poll
+  `/sessions/export/{id}/` → `download_url`
+- `GET /api/v1/me/`, `/projects/`, `/roles/`
+- Proxies: `GET/POST /api/v1/proxies/…` — list, check, attach, detach
+- Blocklists: `GET /api/v1/blacklists/`, `GET/POST/DELETE /blacklists/{kind}/`
+- Avatar library: `/api/v1/photos/` (upload, `random`, `quota`, `bulk-delete`,
+  `bulk-update`, `/{id}/use/`); AI prompts: `/api/v1/prompts/`
+- `POST /api/v1/media/` — upload a file for `send_media` or a broadcast `chain`
+- Webhooks: `/api/v1/webhooks/`, `/webhooks/{id}/deliveries/`,
+  `POST …/deliveries/{delivery_id}/redeliver/`
+- What changed: `GET /api/v1/changelog/`
+
+**Marketplace — spends balance, confirm the ids / count and total first:**
+
+- Buy stock: `GET /api/v1/marketplace/stock/`, `/catalog/`, `/pick/`,
+  `POST /marketplace/buy/` (≤ 20 ids), `GET /marketplace/purchases/`
+- Buy orders, any size: `POST /api/v1/marketplace/orders/` (pass `external_id` so a
+  retry doesn't buy twice), `GET /orders/`, `GET`/`DELETE /orders/{id}/`,
+  `POST /orders/{id}/export/` to download again
+- Exchange (LZT lots, priced for you): `GET /api/v1/marketplace/exchange/` →
+  `POST /exchange/buy/` → `GET /exchange/orders/{id}/` (`result.account_id`)
+- Sell: `POST /api/v1/marketplace/eligibility/` (what can be listed),
+  `GET/POST /marketplace/listings/`, `PATCH`/`DELETE /listings/{id}/`,
+  `GET /marketplace/sales/`, `GET /marketplace/complaints/`
 
 Over REST, add `Idempotency-Key: <uuid>` to `POST /api/v1/tools/...` calls so a retry
 never runs twice.

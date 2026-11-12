@@ -10,7 +10,7 @@ Also takes the common launch options — `dry_run`, `skip_unavailable`, `queue_i
 |---|---|---|---|
 | `account_ids` | integer[] | **required** | Accounts to run with. Must belong to the caller.; min items `1` |
 | `targets` | string[] |  | Chats to post in (@username, link or id). |
-| `chain` | object[] |  | Message items sent in order. |
+| `chain` | object[] |  | Message items sent in order. Item 2+ may add "pause_min"/"pause_max" (seconds, 0..600): its own pause before that item instead of inter_msg_delay_*; one bound = fixed. |
 | `folder_links` | string[] |  | Telegram folder invite links to take chats from. |
 
 ## config

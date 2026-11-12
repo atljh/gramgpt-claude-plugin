@@ -1,6 +1,6 @@
 # Tool reference
 
-61 tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.
+62 tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.
 
 | tool | what it does |
 |---|---|
@@ -14,6 +14,7 @@
 | [`delete_dialog`](delete_dialog.md) | Delete the DM dialog with `peer` from `account_id`'s chat list; `revoke` also wipes it for the other side. |
 | [`delete_messages`](delete_messages.md) | Delete our own messages in the DM (up to 100); others' ids are skipped. |
 | [`edit_message`](edit_message.md) | Edit the text of our own message in the DM. |
+| [`get_account_activity`](get_account_activity.md) | What one of your accounts did over the last N days (default 30, max 90): actions and errors per module, PeerFlood days, Telegram request load, spamblock/freeze events (last 10), peak day. For a bought account — only since your purchase. Free. |
 | [`get_account_detail`](get_account_detail.md) | Get one of your Telegram accounts by id (status, spamblock, geo, proxy, timestamps). |
 | [`get_dialog`](get_dialog.md) | Read one DM conversation: up to `limit` messages newest-first, older pages via `before_id`, optional `mark_read`. Attachments carry `media_type`/`duration`/`file_name`/`mime_type`/`size`, our messages `read`, bot messages inline `buttons` (for click_button). |
 | [`get_media`](get_media.md) | Download a message attachment as a signed 10-min `url` (+ type, duration, size); voice/video notes get Telegram's `transcript` when available. |
@@ -33,7 +34,7 @@
 | [`launch_inviter`](launch_inviter.md) | Launch the Inviter: add target users into your channel or group — via helpers promoted by the main admin account, or directly as members. |
 | [`launch_inviter_preflight`](launch_inviter_preflight.md) | Dry-run the Inviter: destination, main account rights, mode and targets — nothing is joined or invited. |
 | [`launch_mass_looking`](launch_mass_looking.md) | Launch MassLooking: view (and optionally like) targets' stories. Honours accountProtectionEnabled / accountProtectionLevel inside config. |
-| [`launch_mass_react`](launch_mass_react.md) | Launch MassReact module: accounts react to recent posts in target channels. |
+| [`launch_mass_react`](launch_mass_react.md) | Launch MassReact module: accounts react to messages in target groups and to comments in channels' discussion groups (never to the channel posts themselves). |
 | [`launch_neuro_chatting`](launch_neuro_chatting.md) | Launch NeuroChatting module: accounts hold conversations in target chats. Heavier than NeuroCommenting. |
 | [`launch_neuro_commenting`](launch_neuro_commenting.md) | Launch NeuroCommenting module on accounts targeting channels. Returns task_id; poll via get_task_progress. |
 | [`launch_neuro_dialogs`](launch_neuro_dialogs.md) | Launch NeuroDialogs: accounts keep AI conversations going in their own DMs. Honours accountProtectionEnabled / accountProtectionLevel inside config. |
@@ -43,12 +44,12 @@
 | [`launch_spam_pm`](launch_spam_pm.md) | Launch the DM broadcaster: send a message chain to a target list. Requires send_mode and chain inside config. |
 | [`launch_story_mentions`](launch_story_mentions.md) | Launch Story Mentions: post stories that tag target users, or only open empty dialogs with them. |
 | [`launch_warming`](launch_warming.md) | Launch auto-warming module: accounts read dialogs / join channels / scroll feed to simulate organic activity. |
-| [`list_accounts`](list_accounts.md) | List your Telegram accounts. Accounts with pm_aggregation_enabled=True are not returned. Optionally filter by status. |
+| [`list_accounts`](list_accounts.md) | List your Telegram accounts. Optionally filter by status. |
 | [`list_channel_base`](list_channel_base.md) | Read your channel base: channels and groups with folders, liveness and filters, to pass into launch_* tools. |
 | [`list_folders`](list_folders.md) | List the account's Telegram chat folders in their current order (id, title, kind, peer count). |
 | [`mark_account_dead`](mark_account_dead.md) | Mark account as dead. Status set to 'banned', 'deactivated', 'session_revoked', or 'frozen'. |
 | [`pause_task`](pause_task.md) | Pause a running DM/group broadcast before its next target. |
-| [`pick_healthy_accounts`](pick_healthy_accounts.md) | Return up to N account_ids with status=valid, spamblock clear or unknown (not checked yet), pm_aggregation_enabled=False. MVP: oldest-first ordering. |
+| [`pick_healthy_accounts`](pick_healthy_accounts.md) | Return up to N account_ids with status=valid, spamblock clear or unknown (not checked yet). MVP: oldest-first ordering. |
 | [`read_inbox`](read_inbox.md) | Fetch latest DMs for `account_id` (up to `limit`, newest-first), or for up to 10 accounts at once via `account_ids`. |
 | [`remove_targets`](remove_targets.md) | Remove targets from a running DM/group broadcast. |
 | [`reply_in_dm`](reply_in_dm.md) | Send a Telegram DM from `account_id` to `peer`. Returns the sent message id. Optional `parse_mode`, `schedule_at` (Telegram scheduled send). |

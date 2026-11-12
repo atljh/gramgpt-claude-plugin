@@ -1,6 +1,6 @@
 {
   "name": "gramgpt",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "GramGPT for Claude Code: MCP connection to your GramGPT account plus a skill with the tool map and working rules (dry-run first, confirm before anything irreversible).",
   "author": {
     "name": "GramGPT",

@@ -7,6 +7,8 @@ Tested chains of calls. Read the tool files in `tools/` for exact inputs. Every
 
 1. `check_balance` — subscription active? tokens left?
 2. `list_accounts` — group by `status`; count valid / spamblock / frozen / no proxy.
+   For an account that looks off: `get_account_activity` — what it ran, errors,
+   PeerFlood days, spamblock / freeze events.
 3. Problems found → offer `launch_account_op` with `op: "check_spamblock"` or `"check"`
    on the affected ids (no dry run for this tool — confirm first).
 4. Follow with `get_task_progress`, then summarise: what is healthy, what needs
@@ -49,6 +51,8 @@ across accounts rather than pushing every account through every chat.
 3. Show ids, count and total price → explicit yes.
 4. `POST /api/v1/marketplace/buy/` (≤ 20 ids) or `POST /api/v1/marketplace/orders/`
    (`count` + `filters` + `max_price`, `external_id` for idempotency).
+   Not in stock? `GET /api/v1/marketplace/exchange/` (LZT lots) → same yes →
+   `POST /marketplace/exchange/buy/` → poll `/exchange/orders/{id}/` for `result.account_id`.
 5. Files: `POST /api/v1/accounts/sessions/export/` → poll its status → `download_url`.
 
 ## Following a long task

@@ -1,6 +1,6 @@
 # pick_healthy_accounts
 
-Return up to N account_ids with status=valid, spamblock clear or unknown (not checked yet), pm_aggregation_enabled=False. MVP: oldest-first ordering.
+Return up to N account_ids with status=valid, spamblock clear or unknown (not checked yet). MVP: oldest-first ordering.
 
 ## Input
 
