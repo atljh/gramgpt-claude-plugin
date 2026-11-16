@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0 — 2026-11-16
+
+- The skill works in OpenAI Codex too: setup section covers `~/.codex/config.toml`,
+  README has the two-step install (`$skill-installer` + MCP config). Codex connections
+  send `X-Client: gramgpt-codex`.
+
 ## 1.2.1 — 2026-11-16
 
 - Tool reference refreshed from the live API schema.

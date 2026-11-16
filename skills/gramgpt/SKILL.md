@@ -17,17 +17,31 @@ what changed: `GET /api/v1/changelog/`.
 
 ## Setup (only if the gramgpt tools are missing)
 
-Installed as the plugin (`/plugin install gramgpt@gramgpt`)? The tools come with it —
-if they fail with 401, the key is wrong or revoked: tell the user to set a new one in
-`/plugin` → gramgpt → configure. Without the plugin, ask the user for a key and run
-(works on macOS, Linux and Windows):
+**Claude Code.** Installed as the plugin (`/plugin install gramgpt@gramgpt`)? The tools
+come with it — if they fail with 401, the key is wrong or revoked: tell the user to set
+a new one in `/plugin` → gramgpt → configure. Without the plugin, ask the user for a key
+and run (works on macOS, Linux and Windows):
 
 ```
 claude mcp add -s user --transport http gramgpt https://gramgpt.io/mcp/ --header "Authorization: Bearer ggk_live_..."
 ```
 
 `-s user` makes it work in every folder. Tell the user to restart Claude Code.
-Never echo the key back, and never write it anywhere except that command.
+
+**Codex.** Ask the user to add this to `~/.codex/config.toml` with their own key and
+restart Codex (CLI, IDE extension and app all read that file):
+
+```toml
+[mcp_servers.gramgpt]
+url = "https://gramgpt.io/mcp/"
+http_headers = { "Authorization" = "Bearer ggk_live_...", "X-Client" = "gramgpt-codex" }
+```
+
+A 401 after that means the key is wrong or revoked — it must be the full 41-character
+key shown once at creation, not the short prefix from the key list.
+
+Never echo the key back, and never write it anywhere except that command or file.
+Until MCP is connected, every tool still works over REST (see the top of this file).
 
 ## Rules
 
@@ -62,7 +76,7 @@ Never echo the key back, and never write it anywhere except that command.
 - `references/recipes.md` — tested chains: account health check, warming, find →
   filter → comment, inbox triage, buying accounts, following a long task.
 
-Shortcuts the user can type: `/gramgpt:status`, `/gramgpt:launch <what>`,
+Shortcuts the user can type in Claude Code (plugin only): `/gramgpt:status`, `/gramgpt:launch <what>`,
 `/gramgpt:task <task_id>`.
 
 ## What to call

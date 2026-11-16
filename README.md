@@ -24,6 +24,7 @@
   <a href="#commands">Commands</a> ·
   <a href="#safety">Safety</a> ·
   <a href="skills/gramgpt/references/tools/README.md">Tool reference</a> ·
+  <a href="#codex">Codex</a> ·
   <a href="#other-mcp-clients">Cursor / VS Code</a> ·
   <a href="#по-русски">По-русски</a>
 </p>
@@ -73,6 +74,51 @@ Connected GramGPT before with `claude mcp add`? Remove that one
 (`claude mcp remove gramgpt -s user`) so the tools don't show up twice.
 </details>
 
+## Codex
+
+The same skill works in OpenAI Codex (CLI, IDE extension, app). Two steps.
+
+**1. The skill.** In Codex, type:
+
+```text
+$skill-installer install https://github.com/atljh/gramgpt-claude-plugin/tree/main/skills/gramgpt
+```
+
+<details>
+<summary>Or by hand</summary>
+
+```bash
+git clone --depth 1 https://github.com/atljh/gramgpt-claude-plugin /tmp/gramgpt-skill
+mkdir -p ~/.agents/skills && cp -R /tmp/gramgpt-skill/skills/gramgpt ~/.agents/skills/
+```
+</details>
+
+**2. The connection.** Add to `~/.codex/config.toml`, with your key:
+
+```toml
+[mcp_servers.gramgpt]
+url = "https://gramgpt.io/mcp/"
+http_headers = { "Authorization" = "Bearer ggk_live_YOUR_KEY", "X-Client" = "gramgpt-codex" }
+```
+
+Restart Codex and ask *"How are my GramGPT accounts doing?"* (or call the skill
+explicitly with `$gramgpt`). The `/gramgpt:*` commands are Claude Code only — in Codex
+just say what you want.
+
+<details>
+<summary>Keep the key out of the file</summary>
+
+```toml
+[mcp_servers.gramgpt]
+url = "https://gramgpt.io/mcp/"
+bearer_token_env_var = "GRAMGPT_API_KEY"
+http_headers = { "X-Client" = "gramgpt-codex" }
+```
+
+Then `export GRAMGPT_API_KEY=ggk_live_...` in your shell profile. Works for the CLI;
+an app started from the Dock doesn't see shell variables.
+</details>
+
 ## What to ask
 
 | You say | Claude does |
@@ -107,7 +153,7 @@ The GramGPT MCP server also sends these rules on connect, so any MCP client foll
 .claude-plugin/            plugin + marketplace manifests, icon
 .mcp.json                  https://gramgpt.io/mcp/ with your key
 skills/gramgpt/
-  SKILL.md                 rules, tool map, REST-only endpoints
+  SKILL.md                 rules, tool map, REST-only endpoints (Claude Code and Codex)
   references/recipes.md    tested call chains
   references/tools/        one page per tool — inputs, config keys, defaults, limits
 commands/                  /gramgpt:status · /gramgpt:launch · /gramgpt:task
@@ -178,6 +224,23 @@ claude plugin install gramgpt --marketplace atljh/gramgpt-claude-plugin
 `atljh/gramgpt-claude-plugin`. Перезапустите Claude Code. Ключ хранится в защищённом
 хранилище. Перед каждым запуском Claude делает dry-run и спрашивает подтверждение, перед
 удалением, покупкой или отправкой от вашего имени тоже.
+
+**Codex.** Тот же скилл работает в OpenAI Codex. В Codex напишите:
+
+```text
+$skill-installer install https://github.com/atljh/gramgpt-claude-plugin/tree/main/skills/gramgpt
+```
+
+и добавьте в `~/.codex/config.toml` свой ключ:
+
+```toml
+[mcp_servers.gramgpt]
+url = "https://gramgpt.io/mcp/"
+http_headers = { "Authorization" = "Bearer ggk_live_ВАШ_КЛЮЧ", "X-Client" = "gramgpt-codex" }
+```
+
+Перезапустите Codex и спросите «как дела у моих аккаунтов в GramGPT?». Команды
+`/gramgpt:*` есть только в Claude Code — в Codex просто пишите словами.
 
 ## Links
 
