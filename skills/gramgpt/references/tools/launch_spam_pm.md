@@ -20,7 +20,7 @@ Module config. Required inside it: `send_mode` (direct\|trigger) and `chain` (li
 | field | type | | notes |
 |---|---|---|---|
 | `accountProtectionEnabled` | boolean |  | Enable AI Account Protection (requires the paid module). |
-| `accountProtectionLevel` | `careful` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |
+| `accountProtectionLevel` | `conservative` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |
 | `min_delay_seconds` | integer |  | Min pause between targets, seconds (default 30). |
 | `max_delay_seconds` | integer |  | Max pause between targets, seconds (default 90). |
 | `unwarmed_pace_factor` | number |  | Auto-throttle for accounts younger than 14 days: the pause between targets is multiplied by this (default 2.0). Pass 1 to disable it and keep the delays exactly as given. |

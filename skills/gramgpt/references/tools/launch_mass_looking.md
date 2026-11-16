@@ -18,4 +18,4 @@ Module config. Knobs: peers, delay_min / delay_max, max_stories_per_peer, max_to
 | field | type | | notes |
 |---|---|---|---|
 | `accountProtectionEnabled` | boolean |  | Enable AI Account Protection (requires the paid module). |
-| `accountProtectionLevel` | `careful` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |
+| `accountProtectionLevel` | `conservative` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |

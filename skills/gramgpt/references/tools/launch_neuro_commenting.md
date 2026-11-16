@@ -19,6 +19,7 @@ Optional module tuning; extra module keys are accepted.
 |---|---|---|---|
 | `use_account_subscriptions` | boolean |  | Comment in channels each account is subscribed to (with comments enabled); `channels` is then ignored and may be omitted.; default `false` |
 | `enable_comment_visibility_check` | boolean |  | 5 min after sending, check that each comment is still visible.; default `false` |
+| `skip_owner_kicked_channels` | boolean |  | Skip channels whose discussion group kicked any of your accounts (also ones not in this task).; default `false` |
 | `join_max_per_proxy` | integer |  | Max simultaneous joins per proxy (default 2).; min `1`, max `10` |
 | `start_at` | string |  | ISO-8601 deferred start: the task is created now and waits until then (max 48 h ahead) before the first comment. |
 | `min_delay_seconds` | integer |  | Min seconds between comments per account.; default `30`, min `0` |

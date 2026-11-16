@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 — 2026-11-16
+
+- Tool reference refreshed from the live API schema.
+
 ## 1.2.0 — 2026-11-12
 
 - New tool `get_account_activity` — what an account did: actions and errors per

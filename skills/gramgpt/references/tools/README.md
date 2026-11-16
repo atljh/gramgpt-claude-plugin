@@ -1,9 +1,10 @@
 # Tool reference
 
-62 tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.
+63 tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.
 
 | tool | what it does |
 |---|---|
+| [`add_channels_to_blacklist`](add_channels_to_blacklist.md) | Add channels to the NeuroCommenting blacklist of all your accounts (or `account_ids`), like the panel's blacklist Import. |
 | [`add_targets`](add_targets.md) | Add targets to a running DM/group broadcast. |
 | [`block_peer`](block_peer.md) | Block `peer` from `account_id`, or unblock with `unblock: true`. Does not touch the dialog itself. |
 | [`cancel_task`](cancel_task.md) | Cancel a ScriptTask. Idempotent. |
