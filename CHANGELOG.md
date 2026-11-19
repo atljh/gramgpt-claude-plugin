@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0 — 2026-11-19
+
+- New tool `search_help` — GramGPT's help center (how modules work, which settings to
+  pick, limits, errors), the same articles the panel assistant answers from. Rule 8:
+  ask it before setting up a module the user hasn't run, instead of guessing.
+  In the tool map, the NeuroCommenting recipe and the README.
+
 ## 1.3.0 — 2026-11-16
 
 - The skill works in OpenAI Codex too: setup section covers `~/.codex/config.toml`,

@@ -28,7 +28,9 @@ Tested chains of calls. Read the tool files in `tools/` for exact inputs. Every
 3. `launch_check_channels` with those as `targets` → `get_task_results`
    `item_type: "passed"`.
 4. Show the user the passed list; let them cut it down.
-5. `launch_neuro_commenting` with `channels` = the approved list — dry-run first,
+5. First NeuroCommenting run for this user? `search_help` «нейрокомментинг настройка»
+   and pick settings from it.
+6. `launch_neuro_commenting` with `channels` = the approved list — dry-run first,
    show `ignored_keys` and skipped accounts, then launch.
 
 ## Join a list of chats

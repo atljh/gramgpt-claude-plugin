@@ -67,6 +67,9 @@ Until MCP is connected, every tool still works over REST (see the top of this fi
 7. **Account safety.** Telegram freezes accounts pushed too hard: prefer warmed
    accounts, run `check_account_ggr` and `get_account_activity` before heavy tasks,
    keep module defaults unless the user changes them.
+8. **Ask the help center, don't guess.** Before setting up a module the user hasn't
+   run with you, or when they ask how something works, call `search_help` (query in
+   Russian — the articles are Russian) and follow what it says.
 
 ## Reference files
 
@@ -75,6 +78,8 @@ Until MCP is connected, every tool still works over REST (see the top of this fi
   before the first call of a tool in a session** instead of guessing config keys.
 - `references/recipes.md` — tested chains: account health check, warming, find →
   filter → comment, inbox triage, buying accounts, following a long task.
+- How to run a module *well* (settings, limits, what to avoid) is not in these files —
+  it's in the help center: `search_help`.
 
 Shortcuts the user can type in Claude Code (plugin only): `/gramgpt:status`, `/gramgpt:launch <what>`,
 `/gramgpt:task <task_id>`.
@@ -83,6 +88,7 @@ Shortcuts the user can type in Claude Code (plugin only): `/gramgpt:status`, `/g
 
 | User wants | Tool |
 |---|---|
+| how a module works, which settings to pick, an error or limit | `search_help` |
 | balance, subscription | `check_balance` |
 | accounts, their state | `list_accounts`, `get_account_detail`, `pick_healthy_accounts` |
 | account risk score | `check_account_ggr` |

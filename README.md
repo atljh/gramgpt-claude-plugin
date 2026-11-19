@@ -127,6 +127,7 @@ an app started from the Dock doesn't see shell variables.
 | *Warm up 10 fresh accounts for two hours* | picks healthy accounts, checks GGR, dry-runs `launch_warming`, asks, starts |
 | *Find crypto channels with open comments, drop the dead ones* | `launch_parsing` → `launch_check_channels` → shows the list |
 | *Start NeuroCommenting on these channels with the "crypto" project* | reads the module's config reference, dry-run, plan, your yes, launch |
+| *How should I set up NeuroCommenting so accounts don't get frozen?* | `search_help` — answers from GramGPT's help center, the same one the panel assistant uses |
 | *What's unread in the inbox of accounts 12 and 15?* | `read_inbox`, transcribes voice notes, drafts replies for you to approve |
 | *Follow task 3f2c… and tell me when it's done* | polls progress, summarises results or the failure reason |
 
@@ -199,6 +200,8 @@ Configs for every client are in the [API docs](https://gramgpt.io/api/v1/docs/) 
 
 Плагин подключает Claude Code к вашему кабинету GramGPT: все инструменты через MCP, скилл с
 правилами и справочником, команды `/gramgpt:status`, `/gramgpt:launch`, `/gramgpt:task`.
+Как настраивать модули, Claude берёт из справки GramGPT (`search_help`) — той же, по
+которой отвечает ассистент в панели, — так что отдельный промпт с курсами не нужен.
 
 Ключ: **gramgpt.io → Настройки → API-ключи**.
 

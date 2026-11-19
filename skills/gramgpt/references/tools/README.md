@@ -1,6 +1,6 @@
 # Tool reference
 
-63 tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.
+64 tools, generated from the live API schema by `scripts/gen_reference.py` — don't edit by hand.
 
 | tool | what it does |
 |---|---|
@@ -57,6 +57,7 @@
 | [`resolve_links`](resolve_links.md) | Check up to 10 links / @usernames / invite links without joining: kind, title, members, open (false = join by request), comments, parsable. |
 | [`restore_accounts`](restore_accounts.md) | Restore accounts from the trash (see delete_accounts); per-account result or reason. |
 | [`resume_task`](resume_task.md) | Resume a task paused with pause_task. |
+| [`search_help`](search_help.md) | Search the GramGPT help center (how modules work, which settings to pick, limits, errors). Articles are in Russian. Free. |
 | [`send_media`](send_media.md) | Send a voice / video_note / photo / video / document from `media_id` (POST /media/) or an http(s) `url`. Use Idempotency-Key. |
 | [`send_reaction`](send_reaction.md) | Put an emoji reaction on a message in the DM; empty `emoji` removes it. |
 | [`send_typing`](send_typing.md) | Show «typing…» / recording voice / video note to `peer` (~5 s; repeat while composing). |
