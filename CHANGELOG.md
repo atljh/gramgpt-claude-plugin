@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1 — 2026-11-23
+
+- Tool reference refreshed from the live API schema.
+
 ## 1.4.0 — 2026-11-19
 
 - New tool `search_help` — GramGPT's help center (how modules work, which settings to

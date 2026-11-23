@@ -12,10 +12,11 @@ Also takes the common launch options — `dry_run`, `skip_unavailable`, `queue_i
 
 ## config
 
-Module config. Knobs: ai_enabled, ai_prompt_id, language_mode, work_mode (count\|time), max_messages, duration_minutes, min_reply_delay / max_reply_delay, active_hours_start / _end, accountProtectionEnabled / accountProtectionLevel.
+Module config. Knobs: ai_enabled, ai_prompt_id, language_mode, work_mode (count\|time), max_messages, duration_minutes, min_reply_delay / max_reply_delay, active_hours_start / _end, reaction_probability / quote_reply_probability (0..1, default 0), context_messages_count (0-50), followup_enabled + followup_delays_minutes (AI follow-up after silence, 1-3 steps 30-10080 min, default [120, 1440]), accountProtectionEnabled / accountProtectionLevel.
 
 | field | type | | notes |
 |---|---|---|---|
+| `allow_spamblock` | boolean |  | Also run the selected accounts that are in spamblock (off by default). Only accounts listed in account_ids are affected. |
 | `accountProtectionEnabled` | boolean |  | Enable AI Account Protection (requires the paid module). |
 | `accountProtectionLevel` | `conservative` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |
 | `active_hours_start` | ['integer', 'null'] |  | Working window start hour 0-23 (with active_hours_end). Omit both = round the clock.; min `0`, max `23` |

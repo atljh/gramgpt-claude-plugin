@@ -19,6 +19,7 @@ Module config. Same shape as the DM broadcaster: `chain` of message items plus t
 
 | field | type | | notes |
 |---|---|---|---|
+| `allow_spamblock` | boolean |  | Also run the selected accounts that are in spamblock (off by default). Only accounts listed in account_ids are affected. |
 | `accountProtectionEnabled` | boolean |  | Enable AI Account Protection (requires the paid module). |
 | `accountProtectionLevel` | `conservative` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |
 | `min_delay_seconds` | integer |  | Min pause between targets, seconds (default 30). |

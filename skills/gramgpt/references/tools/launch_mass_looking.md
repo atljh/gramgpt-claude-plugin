@@ -17,5 +17,6 @@ Module config. Knobs: peers, delay_min / delay_max, max_stories_per_peer, max_to
 
 | field | type | | notes |
 |---|---|---|---|
+| `allow_spamblock` | boolean |  | Also run the selected accounts that are in spamblock (off by default). Only accounts listed in account_ids are affected. |
 | `accountProtectionEnabled` | boolean |  | Enable AI Account Protection (requires the paid module). |
 | `accountProtectionLevel` | `conservative` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |

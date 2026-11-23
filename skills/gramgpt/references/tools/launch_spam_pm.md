@@ -19,6 +19,7 @@ Module config. Required inside it: `send_mode` (direct\|trigger) and `chain` (li
 
 | field | type | | notes |
 |---|---|---|---|
+| `allow_spamblock` | boolean |  | Also run the selected accounts that are in spamblock (off by default). Only accounts listed in account_ids are affected. |
 | `accountProtectionEnabled` | boolean |  | Enable AI Account Protection (requires the paid module). |
 | `accountProtectionLevel` | `conservative` \| `balanced` \| `aggressive` |  | Protection level; defaults to balanced. |
 | `min_delay_seconds` | integer |  | Min pause between targets, seconds (default 30). |
@@ -35,9 +36,11 @@ Module config. Required inside it: `send_mode` (direct\|trigger) and `chain` (li
 | `ramp` | object |  | {start, step_per_day, max}: per-account daily limit = start + step_per_day × account age in days, capped by max. |
 | `followups` | object[] |  | [{after_hours, if: "no_reply", chain}] — nudge those who did not reply, from the same account in the same dialog. after_hours counts from the previous touch, max 47. |
 | `chain_variants` | object[] |  | [{weight, chain}] — A/B test: each target gets one weighted variant; its index (from 0) is in history.variant and in dm.received.variant. |
+| `greeting` | any |  | send_mode=trigger: the first message, sent before the chain. A chain item ({"type": "text", "text"} etc.) or plain text; a list takes its first item. |
 | `skip_already_messaged` | boolean |  | Skip targets any of your accounts already messaged (default true). |
 | `skip_contacted_days` | integer |  | Limits skip_already_messaged to the last N days; ignored when skip_already_messaged is false. |
 | `notify_on_reply` | boolean |  | Ping the owner in the GramGPT Telegram bot on a target's first reply. |
 | `delete_negative_replies` | boolean |  | Delete the dialog on the account's side when the target's first reply is negative (stop/spam/abuse); no chain is sent to them. |
 | `positive_reply_folder` | boolean |  | Put dialogs with a positive first reply into a Telegram folder. |
 | `positive_reply_folder_name` | string |  | Folder title for positive replies (default "Отклики").; max len `12` |
+| `target_vars` | object |  | Per-recipient variables, e.g. from an imported table: {"@ivan": {"city": "Kyiv", "comment": "…"}}. The key is the target string exactly as in targets; {city} then works in any chain message, the greeting, followups and A/B variants. Names: ^[a-z][a-z0-9_]{0,31}$, up to 30 per recipient; built-in names (first_name, name, username, phone, my_name…) are rejected. A recipient without a row gets the table's columns empty; a text message that ends up empty is skipped. |
